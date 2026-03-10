@@ -6,27 +6,34 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@60edb5dd545a775178fba8a160cecda4a2eda32e
         with:
           node-version: 20
 
       - name: Install dependencies
+        working-directory: ./ci-cd
         run: npm install
 
       - name: Run lint
+        working-directory: ./ci-cd
         run: npm run lint
 
       - name: Run build
+        working-directory: ./ci-cd
         run: npm run build
 
       - name: Run test
+        working-directory: ./ci-cd
         run: npm run test
