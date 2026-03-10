@@ -19,5 +19,14 @@ jobs:
         with:
           node-version: 20
 
-      - name: Run simple command
-        run: echo "Hello CI"
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run build
+        run: npm run build
+
+      - name: Run test
+        run: npm run test
